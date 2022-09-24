@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Root Config</title>
+    <script src="https://cdn.jsdelivr.net/npm/regenerator-runtime@0.13.7/runtime.min.js"></script>
+    <meta name="importmap-type" content="systemjs-importmap" />
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js",
+          "react": "https://cdn.jsdelivr.net/npm/react@17.0.2/umd/react.production.min.js",
+          "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@17.0.2/umd/react-dom.production.min.js"
+        }
+      }
+    </script>
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js"
+      as="script"
+    />
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "@throwjs/root-config": "https://microfrontend-example.github.io/root/throwjs-root-config.js",
+          "@throwjs/react-list": "https://microfrontend-example.github.io/react-list/throwjs-react-list.js",
+          "@throwjs/angular-form": "https://microfrontend-example.github.io/angular-form/main.js",
+          "@throwjs/store": "https://microfrontend-example.github.io/store/throwjs-store.js",
+          "@throwjs/navbar": "https://microfrontend-example.github.io/react-navbar/throwjs-navbar.js"
+        }
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/zone.js@0.11.3/dist/zone.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --red: hsl(1, 90%, 64%);
+        --blue: hsl(219, 85%, 26%);
+
+        /* ### Neutral */
+
+        --white: hsl(0, 0%, 100%);
+        --very-light-grayish-blue: hsl(210, 60%, 98%);
+        --grayish-blue: hsl(219, 14%, 63%);
+        --very-dark-blue: hsl(224, 21%, 14%);
+        --light-grayish-blue-1: hsl(211, 68%, 94%);
+        --light-grayish-blue-2: hsl(205, 33%, 90%);
+        --dark-grayish-blue: hsl(219, 12%, 42%);
+        --radius: 8px;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Montserrat", sans-serif;
+        background-color: var(--very-light-grayish-blue);
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script>
+      System.import("@throwjs/root-config");
+      System.import("@throwjs/store");
+    </script>
+    <import-map-overrides-full
+      show-when-local-storage="devtools"
+      dev-libs
+    ></import-map-overrides-full>
+  </body>
+</html>

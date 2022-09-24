@@ -27,15 +27,29 @@
 
     More information about shared dependencies can be found at https://single-spa.js.org/docs/recommended-setup#sharing-with-import-maps.
   -->
-  <script type="systemjs-importmap">
-    {
-      "imports": {
-        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js",
-        "react": "https://cdn.jsdelivr.net/npm/react@17.0.2/umd/react.development.min.js",
-        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@17.0.2/umd/react-dom.development.min.js"
+
+  <% if (isLocal) { %>
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js",
+          "react": "https://cdn.jsdelivr.net/npm/react@17.0.2/umd/react.development.min.js",
+          "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@17.0.2/umd/react-dom.development.min.js"
+        }
       }
-    }
-  </script>
+    </script>
+    <% } else { %>
+      <script type="systemjs-importmap">
+        {
+          "imports": {
+            "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js",
+            "react": "https://cdn.jsdelivr.net/npm/react@17.0.2/umd/react.production.min.js",
+            "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@17.0.2/umd/react-dom.production.min.js"
+          }
+        }
+      </script>
+    <% } %>
+
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js" as="script">
 
   <!-- Add your organization's prod import map URL to this script's src  -->
@@ -46,12 +60,25 @@
     {
       "imports": {
         "@throwjs/root-config": "//localhost:9000/throwjs-root-config.js",
-        "@throwjs/react-list": "http://localhost:8000/throwjs-react-list.js",
-        "@throwjs/angular-form": "http://localhost:4200/main.js",
-        "@throwjs/store": "http://localhost:5000/throwjs-store.js"
+        "@throwjs/react-list": "//localhost:8000/throwjs-react-list.js",
+        "@throwjs/angular-form": "//localhost:4200/main.js",
+        "@throwjs/store": "//localhost:5000/throwjs-store.js",
+        "@throwjs/navbar": "//localhost:3000/throwjs-navbar.js"
       }
     }
   </script>
+  <% } else { %>
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "@throwjs/root-config": "https://microfrontend-example.github.io/root/throwjs-root-config.js",
+          "@throwjs/react-list": "https://microfrontend-example.github.io/react-list/throwjs-react-list.js",
+          "@throwjs/angular-form": "https://microfrontend-example.github.io/angular-form/main.js",
+          "@throwjs/store": "https://microfrontend-example.github.io/store/throwjs-store.js",
+          "@throwjs/navbar": "https://microfrontend-example.github.io/react-navbar/throwjs-navbar.js"
+        }
+      }
+    </script>
   <% } %>
 
   <!--

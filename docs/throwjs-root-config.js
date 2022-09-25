@@ -149,7 +149,7 @@ System.register(["single-spa"], function (e, t) {
                 function c(e) {
                   return (
                     (function (e) {
-                      if (Array.isArray(e)) return s(e);
+                      if (Array.isArray(e)) return u(e);
                     })(e) ||
                     (function (e) {
                       if (
@@ -158,7 +158,7 @@ System.register(["single-spa"], function (e, t) {
                       )
                         return Array.from(e);
                     })(e) ||
-                    u(e) ||
+                    s(e) ||
                     (function () {
                       throw new TypeError(
                         "Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
@@ -166,9 +166,9 @@ System.register(["single-spa"], function (e, t) {
                     })()
                   );
                 }
-                function u(e, t) {
+                function s(e, t) {
                   if (e) {
-                    if ("string" == typeof e) return s(e, t);
+                    if ("string" == typeof e) return u(e, t);
                     var n = Object.prototype.toString.call(e).slice(8, -1);
                     return (
                       "Object" === n &&
@@ -178,12 +178,12 @@ System.register(["single-spa"], function (e, t) {
                         ? Array.from(e)
                         : "Arguments" === n ||
                           /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)
-                        ? s(e, t)
+                        ? u(e, t)
                         : void 0
                     );
                   }
                 }
-                function s(e, t) {
+                function u(e, t) {
                   (null == t || t > e.length) && (t = e.length);
                   for (var n = 0, r = new Array(t); n < t; n++) r[n] = e[n];
                   return r;
@@ -349,14 +349,14 @@ System.register(["single-spa"], function (e, t) {
                   }
                   if ("route" === e.nodeName.toLowerCase()) {
                     var i = { type: "route", routes: [] },
-                      u = E(e, "path");
-                    u && (i.path = u),
+                      s = E(e, "path");
+                    s && (i.path = s),
                       N(e, "default") && (i.default = !0),
                       N(e, "exact") && (i.exact = !0),
                       x(e, i, t);
-                    for (var s = 0; s < e.childNodes.length; s++) {
+                    for (var u = 0; u < e.childNodes.length; u++) {
                       var p;
-                      (p = i.routes).push.apply(p, c(O(e.childNodes[s], t, n)));
+                      (p = i.routes).push.apply(p, c(O(e.childNodes[u], t, n)));
                     }
                     return [i];
                   }
@@ -459,12 +459,12 @@ System.register(["single-spa"], function (e, t) {
                       if ("application" === e.type) {
                         if (a) {
                           var c,
-                            u = C(e.name);
+                            s = C(e.name);
                           i[e.name]
                             ? (c = i[e.name])
-                            : document.getElementById(u)
-                            ? (c = document.getElementById(u))
-                            : ((c = document.createElement("div")).id = u),
+                            : document.getElementById(s)
+                            ? (c = document.getElementById(s))
+                            : ((c = document.createElement("div")).id = s),
                             S(c, r, o),
                             (o = c);
                         }
@@ -480,8 +480,8 @@ System.register(["single-spa"], function (e, t) {
                       else if (e instanceof Node || "string" == typeof e.type)
                         if (a) {
                           if (!e.connectedNode) {
-                            var s = e instanceof Node ? e.cloneNode(!1) : L(e);
-                            e.connectedNode = s;
+                            var u = e instanceof Node ? e.cloneNode(!1) : L(e);
+                            e.connectedNode = u;
                           }
                           S(e.connectedNode, r, o),
                             e.routes &&
@@ -756,13 +756,13 @@ System.register(["single-spa"], function (e, t) {
                               ),
                                 t.hasOwnProperty("exact") &&
                                   d("".concat(r, ".exact"), t.exact);
-                              var u,
-                                s = t.hasOwnProperty("path"),
+                              var s,
+                                u = t.hasOwnProperty("path"),
                                 l = t.hasOwnProperty("default");
-                              if (s)
+                              if (u)
                                 h("".concat(r, ".path"), t.path),
-                                  (u = y(a, t.path)),
-                                  (t.activeWhen = b(u, t.exact)),
+                                  (s = y(a, t.path)),
+                                  (t.activeWhen = b(s, t.exact)),
                                   i.push(t.activeWhen);
                               else {
                                 if (!l)
@@ -773,7 +773,7 @@ System.register(["single-spa"], function (e, t) {
                                     )
                                   );
                                 d("".concat(r, ".default"), t.default),
-                                  (u = a),
+                                  (s = a),
                                   (t.activeWhen = (function (e, t) {
                                     return function (n) {
                                       return (
@@ -785,7 +785,7 @@ System.register(["single-spa"], function (e, t) {
                                     };
                                   })(i, c));
                               }
-                              if (s && l && t.default)
+                              if (u && l && t.default)
                                 throw Error(
                                   "Invalid ".concat(
                                     r,
@@ -794,7 +794,7 @@ System.register(["single-spa"], function (e, t) {
                                 );
                               t.routes &&
                                 v("".concat(r, ".routes"), t.routes, e, {
-                                  parentPath: u,
+                                  parentPath: s,
                                   siblingActiveWhens: [],
                                   parentActiveWhen: t.activeWhen,
                                 });
@@ -833,7 +833,7 @@ System.register(["single-spa"], function (e, t) {
                       e
                     );
                   })(
-                    '<single-spa-router>\n  \x3c!--\n\n    This is the single-spa Layout Definition for your microfrontends.\n    See https://single-spa.js.org/docs/layout-definition/ for more information.\n\n  --\x3e\n\n  \x3c!-- Example layouts you might find helpful:\n\n  <nav>\n    <application name="@org/navbar"></application>\n  </nav>\n  <route path="settings">\n    <application name="@org/settings"></application>\n  </route>\n\n  --\x3e\n\n  <main>\n    <application name="@throwjs/navbar"></application>\n    <route path="/" default exact>\n      <application name="@throwjs/react-list"></application>\n    </route>\n    <route path="/form" exact>\n      <application name="@throwjs/angular-form"></application>\n    </route>\n  </main>\n</single-spa-router>\n'
+                    '<single-spa-router>\n  \x3c!--\n\n    This is the single-spa Layout Definition for your microfrontends.\n    See https://single-spa.js.org/docs/layout-definition/ for more information.\n\n  --\x3e\n\n  \x3c!-- Example layouts you might find helpful:\n\n  <nav>\n    <application name="@org/navbar"></application>\n  </nav>\n  <route path="settings">\n    <application name="@org/settings"></application>\n  </route>\n\n  --\x3e\n\n  <main>\n    <application name="@throwjs/navbar"></application>\n    <redirect from="/root" to="/"></redirect>\n    <route path="/" exact>\n      <application name="@throwjs/react-list"></application>\n    </route>\n    <route path="/form" exact>\n      <application name="@throwjs/angular-form"></application>\n    </route>\n  </main>\n</single-spa-router>\n'
                   ),
                   B =
                     ((k = (D = {
@@ -913,16 +913,16 @@ System.register(["single-spa"], function (e, t) {
                                       "string" == typeof n.loader
                                         ? P(n.loader)
                                         : n.loader,
-                                    s = (0, e.mountRootParcel)(c, {
+                                    u = (0, e.mountRootParcel)(c, {
                                       name: "application-loader:".concat(t),
                                       domElement: i,
                                     });
                                   function l() {
-                                    return s.unmount().then(function () {
+                                    return u.unmount().then(function () {
                                       o && o();
                                     });
                                   }
-                                  return Promise.all([s.mountPromise, r]).then(
+                                  return Promise.all([u.mountPromise, r]).then(
                                     function (e) {
                                       var t,
                                         n =
@@ -961,7 +961,7 @@ System.register(["single-spa"], function (e, t) {
                                               return n;
                                             }
                                           })(t) ||
-                                          u(t, 2) ||
+                                          s(t, 2) ||
                                           (function () {
                                             throw new TypeError(
                                               "Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
@@ -997,8 +997,8 @@ System.register(["single-spa"], function (e, t) {
                           t(r)
                         )
                       );
-                    var u = r.base.slice(0, r.base.length - 1),
-                      s = {
+                    var s = r.base.slice(0, r.base.length - 1),
+                      u = {
                         isActive: function () {
                           return i;
                         },
@@ -1040,7 +1040,7 @@ System.register(["single-spa"], function (e, t) {
                               (0, e.removeErrorHandler)(p)));
                         },
                       };
-                    return a && s.activate(), s;
+                    return a && u.activate(), u;
                     function p(t) {
                       var n = A({
                         applicationName: t.appOrParcelName,
@@ -1062,10 +1062,10 @@ System.register(["single-spa"], function (e, t) {
                       var o = n.detail,
                         a = o.cancelNavigation,
                         i = o.newUrl,
-                        u = W(r, T(i)),
-                        s = function (t) {
+                        s = W(r, T(i)),
+                        u = function (t) {
                           var n = r.redirects[t];
-                          if (t === u) {
+                          if (t === s) {
                             if (!a)
                               throw Error(
                                 "single-spa-layout: <redirect> requires single-spa@>=5.7.0"
@@ -1080,7 +1080,7 @@ System.register(["single-spa"], function (e, t) {
                           }
                         };
                       for (var l in r.redirects) {
-                        var p = s(l);
+                        var p = u(l);
                         if ("object" === t(p)) return p.v;
                       }
                       var d = [];
@@ -1094,7 +1094,7 @@ System.register(["single-spa"], function (e, t) {
                           }));
                     }
                     function f() {
-                      if (0 === W(r).indexOf(u)) {
+                      if (0 === W(r).indexOf(s)) {
                         var t =
                             "string" == typeof r.containerEl
                               ? document.querySelector(r.containerEl)

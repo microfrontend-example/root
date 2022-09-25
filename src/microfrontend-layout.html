@@ -19,7 +19,8 @@
 
   <main>
     <application name="@throwjs/navbar"></application>
-    <route path="/" default exact>
+    <redirect from="/root" to="/"></redirect>
+    <route path="/" exact>
       <application name="@throwjs/react-list"></application>
     </route>
     <route path="/form" exact>
